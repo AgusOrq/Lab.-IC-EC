@@ -9,6 +9,6 @@ def test_home():
     assert respuesta.status_code == 200
     assert "Hola," in respuesta.get_data(as_text=True)
 
-# Prueba para demostrar el gate del pipeline
-#def test_fallo_intencional():
-#    assert saludo("mundo") == "Esto nunca coincide"
+#Prueba para demostrar el gate del pipeline
+def test_fallo_intencional():
+    assert saludo("mundo") == "Esto nunca coincide"
