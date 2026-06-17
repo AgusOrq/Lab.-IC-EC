@@ -27,7 +27,7 @@ jobs:
         run: pytest
       
       - name: Avisar a Slack si la build falla
-        if: failure() && github.event_name == 'push'
+        if: failure()
         run: |
           curl -X POST -H 'Content-type: application/json' --data '{
             "text": "*La build falló y el despliegue fue bloqueado*\n\n*Proyecto:* ${{ github.repository }}\n*Rama:* ${{ github.ref_name }}\n*Disparado por:* ${{ github.actor }}\n*Commit:* <${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|${{ github.sha }}>\n\nUna prueba automática no pasó, así que el pipeline detuvo el despliegue. La aplicación en producción sigue funcionando con la última versión correcta; el cambio con error no llegó a publicarse.\n\n*Ver el detalle del error:* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
